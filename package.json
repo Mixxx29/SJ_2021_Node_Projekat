@@ -1,0 +1,35 @@
+{
+  "name": "sj_2021_node_projekat",
+  "version": "1.0.0",
+  "description": "Projekat iz predmeta 'Skript jezici'",
+  "main": "app-server.js",
+  "scripts": {
+    "start": "nodemon app-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mixxx29/SJ_2021_Node_Projekat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mixxx29/SJ_2021_Node_Projekat/issues"
+  },
+  "homepage": "https://github.com/Mixxx29/SJ_2021_Node_Projekat#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mysql2": "^2.3.3",
+    "node-fetch": "^2.6.6",
+    "sequelize": "^6.12.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "sequelize-cli": "^6.3.0"
+  }
+}
