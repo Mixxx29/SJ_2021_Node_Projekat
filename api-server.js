@@ -47,7 +47,7 @@ io.on('connection', socket => {
 });
 
 let corsSettings = {
-    origin: 'https://sj-projekat.herokuapp.com',
+    origin: '*',
     optionsSuccessStatus: 200
 };
 
