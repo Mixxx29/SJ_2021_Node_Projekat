@@ -38,10 +38,11 @@ server.post('/login', (req, res) => {
             };
 
             const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
+            console.log('KITAA 4');
 
             res.json({token: token, id: user.id, username: user.username});
+            console.log('KITAA 5');
         } else {
-            console.log('KITAA 4');
             res.json({token: null, msg: 'Pogresno korisnicko ime ili sifra!'});
         }
     }).catch(err => {
