@@ -26,7 +26,7 @@ export default new Vuex.Store({
   actions: {
     getAppointments: function ({commit}, date) {
       return new Promise((resolve => {
-        fetch(`http://127.0.0.1:8081/user/appointments/${date}`).then(result => {
+        fetch(`https://sj-projekat.herokuapp.com:8081/user/appointments/${date}`).then(result => {
           result.json().then(appointments => {
             appointments.forEach(appointment => {
               commit('addAppointment', appointment);
@@ -38,7 +38,7 @@ export default new Vuex.Store({
     },
     login: function ({commit}, form) {
       return new Promise((resolve, reject) => {
-        fetch('http://127.0.0.1:8082/login', {
+        fetch('https://sj-projekat.herokuapp.com:8082/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ export default new Vuex.Store({
           return reject({msg: 'Sifre se ne poklapaju!'});
         }
 
-        fetch('http://127.0.0.1:8082/register', {
+        fetch('https://sj-projekat.herokuapp.com:8082/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

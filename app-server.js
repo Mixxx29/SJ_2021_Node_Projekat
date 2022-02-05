@@ -19,4 +19,4 @@ server.use(history({index: '/index.html'}));
 server.use(staticDir);
 
 // Start server
-server.listen(process.env.PORT || 8000);
+server.listen(process.env.PORT || 8080);
