@@ -1,7 +1,6 @@
 
 function init() {
     const table = document.getElementById('table');
-
     fetch('http://127.0.0.1:8081/admin/appointments').then(results => {
         results.json().then(appointments => {
             let row = 0;
@@ -41,11 +40,11 @@ function init() {
 }
 
 function create() {
-    document.location.href = 'http://127.0.0.1:8080/admin/appointments/create';
+    document.location.href = 'http://127.0.0.1:8000/admin/appointments/create';
 }
 
 function edit(id) {
-    document.location.href = `http://127.0.0.1:8080/admin/appointments/edit/${id}`;
+    document.location.href = `http://127.0.0.1:8000/admin/appointments/edit/${id}`;
 }
 
 function deleteAuthority(id) {
@@ -57,7 +56,7 @@ function deleteAuthority(id) {
         }).then(result => {
             result.json().then(deleted => {
                 if (deleted) {
-                    document.location.href = 'http://127.0.0.1:8080/admin/appointments';
+                    document.location.href = 'http://127.0.0.1:8000/admin/appointments';
                 }
             });
         });

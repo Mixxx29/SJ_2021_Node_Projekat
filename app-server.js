@@ -1,29 +1,22 @@
 require('dotenv').config();
 const express = require('express');
-const auth = require('./middlewares/auth');
 const path = require('path');
 const admin = require('./routes/app/admin/admin');
-const fetch = require('node-fetch');
+const history = require('connect-history-api-fallback');
 
 // Create main app server
 const server = express();
 
-// Login page
-server.get('/login', (req, res) => {
-    res.send('Login here!');
-});
-
 // Add middlewares
-server.use(auth.authenticate);
+server.use(express.json());
 server.use('/admin', admin.router);
 
-// Homepage
-server.get('/', (req, res) => {
-    res.send(`Welcome ${req.user.username}!`);
-});
-
 // Set static directory
-server.use(express.static(path.join(__dirname, 'static')));
+const staticDir = express.static(path.join(__dirname, 'dist'));
+
+server.use(staticDir);
+server.use(history({index: '/index.html'}));
+server.use(staticDir);
 
 // Start server
 server.listen(8080);

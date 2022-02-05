@@ -1,12 +1,10 @@
 // Imports
 const express = require('express');
-const {User, Authority} = require("../../../models");
 const auth = require('../../../middlewares/auth');
 const user = require('./user');
 const authority = require('./authority');
 const appointment = require('./appointment');
 const notification = require('./notification');
-const bcrypt = require('bcrypt');
 
 // Create router
 const router = express.Router();

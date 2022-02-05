@@ -1,0 +1,30 @@
+
+@font-face {
+    font-family: 'Mochiy';
+    src: url('../public/fonts/Mochiy.woff') format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fffcf1;
+    font-family: 'Mochiy', sans-serif;
+    text-align: center;
+    color: #684971;
+}
+
+p {
+    margin: 0;
+}
+
+.v-center {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}

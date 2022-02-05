@@ -39,11 +39,11 @@ function init() {
 }
 
 function create() {
-    document.location.href = 'http://127.0.0.1:8080/admin/users/create';
+    document.location.href = 'http://127.0.0.1:8000/admin/users/create';
 }
 
 function edit(id) {
-    document.location.href = `http://127.0.0.1:8080/admin/users/edit/${id}`;
+    document.location.href = `http://127.0.0.1:8000/admin/users/edit/${id}`;
 }
 
 function deleteUser(id) {
@@ -54,7 +54,7 @@ function deleteUser(id) {
             body: JSON.stringify({id: id})
         }).then(deleted => {
             if (deleted) {
-                document.location.href = 'http://127.0.0.1:8080/admin/users';
+                document.location.href = 'http://127.0.0.1:8000/admin/users';
             }
         });
     }

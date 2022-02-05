@@ -38,11 +38,11 @@ function init() {
 }
 
 function create() {
-    document.location.href = 'http://127.0.0.1:8080/admin/notifications/create';
+    document.location.href = 'http://127.0.0.1:8000/admin/notifications/create';
 }
 
 function edit(id) {
-    document.location.href = `http://127.0.0.1:8080/admin/notifications/edit/${id}`;
+    document.location.href = `http://127.0.0.1:8000/admin/notifications/edit/${id}`;
 }
 
 function deleteAuthority(id) {
@@ -54,7 +54,7 @@ function deleteAuthority(id) {
         }).then(result => {
             result.json().then(deleted => {
                 if (deleted) {
-                    document.location.href = 'http://127.0.0.1:8080/admin/notifications';
+                    document.location.href = 'http://127.0.0.1:8000/admin/notifications';
                 }
             });
         });

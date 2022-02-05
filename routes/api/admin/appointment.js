@@ -42,7 +42,6 @@ router.post('/', (req, res) => {
 router.put('/', (req, res) => {
     Appointment.findOne({where: {id: req.body.id}}).then(appointment => {
         if (appointment) {
-            console.log(appointment)
             appointment.userID = req.body.userID;
             appointment.date = req.body.date;
             appointment.employeeID = req.body.employeeID;

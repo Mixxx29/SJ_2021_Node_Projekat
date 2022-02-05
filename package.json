@@ -4,7 +4,7 @@
   "description": "Projekat iz predmeta 'Skript jezici'",
   "main": "app-server.js",
   "scripts": {
-    "start": "nodemon app-server.js"
+    "start": "nodemon app-server.js auth-server.js api-server.js"
   },
   "repository": {
     "type": "git",
@@ -19,14 +19,17 @@
   "homepage": "https://github.com/Mixxx29/SJ_2021_Node_Projekat#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "connect-history-api-fallback": "^1.6.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
+    "http": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "mysql2": "^2.3.3",
     "node-fetch": "^2.6.6",
-    "sequelize": "^6.12.4"
+    "sequelize": "^6.12.4",
+    "socket.io": "^4.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15",
