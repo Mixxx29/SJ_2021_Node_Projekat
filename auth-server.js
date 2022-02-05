@@ -4,6 +4,7 @@ const fetch = require('node-fetch');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require("cors");
+const {sequelize, User} = require("./models");
 require('dotenv').config();
 
 // Create authentication server
@@ -20,9 +21,7 @@ server.use(cors(corsSettings));
 
 // Login
 server.post('/login', (req, res) => {
-    fetch(`https://sj-projekat-api.herokuapp.com/users/username/${req.body.username}`, {
-        method: 'GET'
-    }).then(result => result.json().then(user => {
+    User.findOne({where: {username: req.body.username}, include: ['authority']}).then(user => {
         if (bcrypt.compareSync(req.body.password, user.password)) {
             // Create token
             const payload = {
@@ -37,40 +36,30 @@ server.post('/login', (req, res) => {
         } else {
             res.json({token: null, msg: 'Pogresno korisnicko ime ili sifra!'});
         }
-    }).catch(() => {
-        res.json({token: null, msg: 'Pogresno korisnicko ime ili sifra!'});
-    })).catch(err => {
-        res.status(500).json(err);
+    }).catch(err => {
+        res.status(500).send(err);
     });
 });
 
 // Register route
 server.post('/register', (req, res) => {
-    req.body.password = bcrypt.hashSync(req.body.password, 10);
-    fetch('https://sj-projekat-api.herokuapp.com/users', {
-        method: 'POST',
-        body: JSON.stringify(req.body),
-        headers: {'Content-Type': 'application/json'}
-    }).then(result => {
-        result.json().then(user => {
-            if (user == null) return res.json({token: null, msg: 'Korisnicko ime je zauzeto!'});
+    User.findOne({where: {username: req.body.username}}).then(user => {
+        if (user == null) return res.json({token: null, msg: 'Korisnicko ime je zauzeto!'});
 
-            // Create payload
-            const payload = {
-                id: user.id,
-                username: user.username,
-                authority: user.authority
-            };
+        const userObject = {
+            username: req.body.username,
+            password: bcrypt.hashSync(req.body.password, 10)
+        };
 
-            // Create token
-            const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
-
-            res.json({token: token, id: user.id, username: user.username});
+        User.create(userObject).then(newUser => {
+            res.json(newUser);
         });
     }).catch(err => {
-        res.status(500).json(err);
+        res.status(500).send(err);
     });
 });
 
-// Start server
-server.listen(process.env.PORT || 8082);
+// Start server and connect to database
+server.listen({ port: process.env.PORT || 8082 }, async () => {
+    await sequelize.authenticate();
+});

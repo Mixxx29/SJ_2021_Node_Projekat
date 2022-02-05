@@ -55,33 +55,6 @@ let corsSettings = {
 server.use(express.json());
 server.use(cors(corsSettings));
 
-// Get user by username
-server.get('/users/username/:username', (req, res) => {
-    User.findOne({where: {username: req.params.username}, include: ['authority']}).then(user => {
-        res.json(user);
-    }).catch(err => {
-        res.status(500).send(err);
-    });
-});
-
-// Create user
-server.post('/users', (req, res) => {
-    User.findOne({where: {username: req.body.username}}).then(user => {
-        if (user) return res.json(null);
-
-        const userObject = {
-            username: req.body.username,
-            password: req.body.password
-        };
-
-        User.create(userObject).then(newUser => {
-            res.json(newUser);
-        });
-    }).catch(err => {
-        res.status(500).send(err);
-    });
-});
-
 server.use('/user', user.router);
 server.use(auth.authenticate);
 server.use('/admin', admin.router);
