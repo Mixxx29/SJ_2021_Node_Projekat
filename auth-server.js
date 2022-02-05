@@ -38,7 +38,6 @@ server.post('/login', (req, res) => {
             res.json({token: null, msg: 'Pogresno korisnicko ime ili sifra!'});
         }
     }).catch(err => {
-        console.log(err);
         res.status(500).send(err);
     });
 });
