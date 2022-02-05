@@ -14,7 +14,7 @@ Vue.use(IconsPlugin)
 
 Vue.use(new VueSocketIO({
   debug: false,
-  connection: 'http://sj-projekat.herokuapp.com',
+  connection: 'ws://sj-projekat.herokuapp.com:8081',
   vuex: {
     store,
     actionPrefix: 'socket_'
