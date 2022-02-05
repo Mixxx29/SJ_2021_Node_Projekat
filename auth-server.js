@@ -1,6 +1,5 @@
 // Imports
 const express = require('express');
-const fetch = require('node-fetch');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require("cors");
@@ -22,6 +21,8 @@ server.use(cors(corsSettings));
 // Login
 server.post('/login', (req, res) => {
     User.findOne({where: {username: req.body.username}, include: ['authority']}).then(user => {
+        if (user == null) return res.json({token: null, msg: 'Pogresno korisnicko ime ili sifra!'});
+
         if (bcrypt.compareSync(req.body.password, user.password)) {
             // Create token
             const payload = {
@@ -37,6 +38,7 @@ server.post('/login', (req, res) => {
             res.json({token: null, msg: 'Pogresno korisnicko ime ili sifra!'});
         }
     }).catch(err => {
+        console.log(err);
         res.status(500).send(err);
     });
 });
@@ -44,7 +46,7 @@ server.post('/login', (req, res) => {
 // Register route
 server.post('/register', (req, res) => {
     User.findOne({where: {username: req.body.username}}).then(user => {
-        if (user == null) return res.json({token: null, msg: 'Korisnicko ime je zauzeto!'});
+        if (user) return res.json({token: null, msg: 'Korisnicko ime je zauzeto!'});
 
         const userObject = {
             username: req.body.username,
@@ -52,7 +54,17 @@ server.post('/register', (req, res) => {
         };
 
         User.create(userObject).then(newUser => {
-            res.json(newUser);
+            // Create payload
+            const payload = {
+                id: newUser.id,
+                username: newUser.username,
+                authority: newUser.authority
+            };
+
+            // Create token
+            const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
+
+            res.json({token: token, id: newUser.id, username: newUser.username});
         });
     }).catch(err => {
         res.status(500).send(err);
