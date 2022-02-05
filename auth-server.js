@@ -24,12 +24,9 @@ server.get('/', (req, res) => {
 
 // Login
 server.post('/login', (req, res) => {
-    console.log('KITAA 1');
     User.findOne({where: {username: req.body.username}, include: ['authority']}).then(user => {
         if (user == null) return res.json({token: null, msg: 'Pogresno korisnicko ime ili sifra!'});
-        console.log('KITAA 2');
         if (bcrypt.compareSync(req.body.password, user.password)) {
-            console.log('KITAA 3');
             // Create token
             const payload = {
                 id: user.id,
@@ -38,10 +35,8 @@ server.post('/login', (req, res) => {
             };
 
             const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
-            console.log('KITAA 4');
 
             res.json({token: token, id: user.id, username: user.username});
-            console.log('KITAA 5');
         } else {
             res.json({token: null, msg: 'Pogresno korisnicko ime ili sifra!'});
         }
