@@ -18,6 +18,10 @@ let corsSettings = {
 server.use(express.json());
 server.use(cors(corsSettings));
 
+server.get('/', (req, res) => {
+    res.send("WTF");
+})
+
 // Login
 server.post('/login', (req, res) => {
     User.findOne({where: {username: req.body.username}, include: ['authority']}).then(user => {
