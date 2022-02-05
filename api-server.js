@@ -16,7 +16,7 @@ const server = express();
 const httpServer = http.createServer(server);
 const io = new Server(httpServer, {
     cors: {
-        origin: 'http://sj-projekat.herokuapp.com',
+        origin: 'https://sj-projekat.herokuapp.com',
         methods: ['GET', 'POST'],
         credentials: true
     },
@@ -47,7 +47,7 @@ io.on('connection', socket => {
 });
 
 let corsSettings = {
-    origin: 'http://sj-projekat.herokuapp.com',
+    origin: 'https://sj-projekat.herokuapp.com',
     optionsSuccessStatus: 200
 };
 
