@@ -24,6 +24,7 @@ server.get('/', (req, res) => {
 
 // Login
 server.post('/login', (req, res) => {
+    console.log('KITAA');
     User.findOne({where: {username: req.body.username}, include: ['authority']}).then(user => {
         if (user == null) return res.json({token: null, msg: 'Pogresno korisnicko ime ili sifra!'});
 
