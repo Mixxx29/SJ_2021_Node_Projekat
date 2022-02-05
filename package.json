@@ -2,9 +2,9 @@
   "name": "sj_2021_node_projekat",
   "version": "1.0.0",
   "description": "Projekat iz predmeta 'Skript jezici'",
-  "main": "api-server.js",
+  "main": "app-server.js",
   "scripts": {
-    "start": "node api-server.js"
+    "start": "node app-server.js"
   },
   "repository": {
     "type": "git",
