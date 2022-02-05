@@ -2,7 +2,7 @@
   "name": "sj_2021_node_projekat",
   "version": "1.0.0",
   "description": "Projekat iz predmeta 'Skript jezici'",
-  "main": "app-server.js",
+  "main": "auth-server.js",
   "scripts": {
     "start": "node auth-server.js"
   },

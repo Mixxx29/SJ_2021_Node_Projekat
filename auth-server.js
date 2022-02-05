@@ -42,7 +42,7 @@ server.post('/login', (req, res) => {
             res.json({token: null, msg: 'Pogresno korisnicko ime ili sifra!'});
         }
     }).catch(err => {
-        res.status(500).send(err);
+        res.status(500).json(err);
     });
 });
 
@@ -70,7 +70,7 @@ server.post('/register', (req, res) => {
             res.json({token: token, id: newUser.id, username: newUser.username});
         });
     }).catch(err => {
-        res.status(500).send(err);
+        res.status(500).json(err);
     });
 });
 
