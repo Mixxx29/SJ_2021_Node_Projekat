@@ -11,7 +11,7 @@ require('dotenv').config();
 const server = express();
 
 let corsSettings = {
-    origin: 'http://sj-projekat.herokuapp.com',
+    origin: 'https://sj-projekat.herokuapp.com',
     optionsSuccessStatus: 200
 };
 
