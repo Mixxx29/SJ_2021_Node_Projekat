@@ -4,7 +4,7 @@
   "description": "Projekat iz predmeta 'Skript jezici'",
   "main": "app-server.js",
   "scripts": {
-    "start": "nodemon app-server.js auth-server.js api-server.js"
+    "start": "node app-server.js auth-server.js api-server.js"
   },
   "repository": {
     "type": "git",
