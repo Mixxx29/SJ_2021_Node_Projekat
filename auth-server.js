@@ -24,11 +24,12 @@ server.get('/', (req, res) => {
 
 // Login
 server.post('/login', (req, res) => {
-    console.log('KITAA');
+    console.log('KITAA 1');
     User.findOne({where: {username: req.body.username}, include: ['authority']}).then(user => {
         if (user == null) return res.json({token: null, msg: 'Pogresno korisnicko ime ili sifra!'});
-
+        console.log('KITAA 2');
         if (bcrypt.compareSync(req.body.password, user.password)) {
+            console.log('KITAA 3');
             // Create token
             const payload = {
                 id: user.id,
@@ -40,9 +41,11 @@ server.post('/login', (req, res) => {
 
             res.json({token: token, id: user.id, username: user.username});
         } else {
+            console.log('KITAA 4');
             res.json({token: null, msg: 'Pogresno korisnicko ime ili sifra!'});
         }
     }).catch(err => {
+        console.log(err);
         res.status(500).json(err);
     });
 });
