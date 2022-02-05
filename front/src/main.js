@@ -4,7 +4,6 @@ import router from './router'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import store from './store'
 import VueSocketIO from 'vue-socket.io'
-import SocketIO from 'socket.io-client';
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -15,7 +14,7 @@ Vue.use(IconsPlugin)
 
 Vue.use(new VueSocketIO({
   debug: false,
-  connection: 'http://sj-projekat.herokuapp.com:8081',
+  connection: 'ws://sj-projekat.herokuapp.com:8081',
   vuex: {
     store,
     actionPrefix: 'socket_'
