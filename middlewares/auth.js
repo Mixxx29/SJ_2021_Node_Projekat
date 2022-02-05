@@ -1,7 +1,7 @@
 // Imports
 const jwt = require('jsonwebtoken');
 
-let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImF1dGhvcml0eSI6eyJpZCI6MSwiaXNBZG1pbiI6dHJ1ZSwiaXNFbXBsb3llZSI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyMi0wMS0xNlQwMDoxNzowMy4wMDBaIiwidXBkYXRlZEF0IjoiMjAyMi0wMS0xNlQwMDoxNzowMy4wMDBaIiwidXNlcklEIjoxfSwiaWF0IjoxNjQ0MDg0NzQ3fQ.aLALfiQ1pISVnfs7d5_3uj9ABfrPjIcKrL7DGtK8Vpo';
+let token = null;
 
 // Middleware functions
 function authenticate(req, res, next) {
@@ -12,11 +12,11 @@ function authenticate(req, res, next) {
     }
 
     // Redirect to login page
-    if (token == null) return res.redirect('http://127.0.0.1:8080/login');
+    if (token == null) return res.redirect('https://sj-projekat.herokuapp.com/login');
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         // Redirect to login page
-        if (err) return res.redirect('http://127.0.0.1:8080/login');
+        if (err) return res.redirect('https://sj-projekat.herokuapp.com/login');
 
         req.user = user;
         next();
@@ -32,11 +32,11 @@ function isAdmin(req, res, next) {
         }
 
         // Redirect to login page
-        if (token == null) return res.redirect('http://127.0.0.1:8080/login');
+        if (token == null) return res.redirect('https://sj-projekat.herokuapp.com/login');
 
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
             // Redirect to login page
-            if (err) return res.redirect('http://127.0.0.1:8080/login');
+            if (err) return res.redirect('https://sj-projekat.herokuapp.com/login');
 
             req.user = user;
         });
