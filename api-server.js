@@ -96,6 +96,6 @@ server.get('/users/:id', (req, res) => {
 });
 
 // Start server and connect to database
-httpServer.listen({port: 8081}, async () => {
+httpServer.listen({ port: process.env.PORT || 8081 }, async () => {
     await sequelize.authenticate();
 });

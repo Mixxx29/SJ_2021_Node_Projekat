@@ -66,7 +66,7 @@ export default {
       document.getElementById('header').style.boxShadow = '0 3px 10px #a06389';
     }
 
-    if (localStorage.user !== 'null') {
+    if (localStorage.user && localStorage.user !== 'null') {
       this.user = JSON.parse(localStorage.user);
     }
   }

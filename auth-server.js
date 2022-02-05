@@ -20,7 +20,7 @@ server.use(cors(corsSettings));
 
 // Login
 server.post('/login', (req, res) => {
-    fetch(`https://sj-projekat.herokuapp.com:8081/users/username/${req.body.username}`, {
+    fetch(`https://sj-projekat-api.herokuapp.com/users/username/${req.body.username}`, {
         method: 'GET'
     }).then(result => result.json().then(user => {
         if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -47,7 +47,7 @@ server.post('/login', (req, res) => {
 // Register route
 server.post('/register', (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, 10);
-    fetch('https://sj-projekat.herokuapp.com:8081/users', {
+    fetch('https://sj-projekat-api.herokuapp.com/users', {
         method: 'POST',
         body: JSON.stringify(req.body),
         headers: {'Content-Type': 'application/json'}
@@ -73,4 +73,4 @@ server.post('/register', (req, res) => {
 });
 
 // Start server
-server.listen(8082);
+server.listen(process.env.PORT || 8082);
